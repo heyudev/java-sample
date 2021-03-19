@@ -17,6 +17,8 @@
         <module>common-util</module>
         <module>common-http</module>
         <module>distributed-lock</module>
+        <module>seate</module>
+        <module>distributed-transaction</module>
     </modules>
 
     <dependencyManagement>
