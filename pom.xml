@@ -19,6 +19,7 @@
         <module>distributed-lock</module>
         <module>seate</module>
         <module>distributed-transaction</module>
+        <module>concurrency</module>
     </modules>
 
     <dependencyManagement>
