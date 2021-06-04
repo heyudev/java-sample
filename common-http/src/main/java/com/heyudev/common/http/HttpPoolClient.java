@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * http client
  *
- * @author supeng
+ * @author heyudev
  */
 public class HttpPoolClient {
 

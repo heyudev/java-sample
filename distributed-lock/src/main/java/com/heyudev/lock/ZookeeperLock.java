@@ -10,7 +10,7 @@ import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
 /**
  * Zookeeper 实现分布式锁
  *
- * @author supeng
+ * @author heyudev
  * @date 2021/04/08
  */
 public class ZookeeperLock {

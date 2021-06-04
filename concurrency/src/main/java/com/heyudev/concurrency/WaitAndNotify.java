@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/04/09
  */
 public class WaitAndNotify {

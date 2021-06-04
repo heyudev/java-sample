@@ -20,6 +20,8 @@
         <module>seate</module>
         <module>distributed-transaction</module>
         <module>concurrency</module>
+        <module>base</module>
+        <module>spi</module>
     </modules>
 
     <dependencyManagement>

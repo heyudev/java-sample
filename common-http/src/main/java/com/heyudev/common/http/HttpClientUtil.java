@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * http util
  *
- * @author supeng
+ * @author heyudev
  */
 public class HttpClientUtil {
 
