@@ -10,7 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author supeng
  * @date 2021/06/07
  */
-public class Collection {
+public class MyCollection {
 
 
     public static void main(String[] args) {
