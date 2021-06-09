@@ -3,7 +3,7 @@ package com.heyudev.base;
 import java.util.LinkedList;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/09
  */
 public class MyLinked {

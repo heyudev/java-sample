@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/09
  */
 public class MyTree {

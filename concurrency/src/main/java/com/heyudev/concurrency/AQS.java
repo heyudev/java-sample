@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/07
  */
 public class AQS {

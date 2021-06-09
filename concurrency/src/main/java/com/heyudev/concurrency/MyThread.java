@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/08
  */
 public class MyThread {

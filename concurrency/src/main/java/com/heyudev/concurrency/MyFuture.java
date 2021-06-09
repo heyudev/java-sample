@@ -5,7 +5,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.concurrent.*;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/09
  */
 public class MyFuture {

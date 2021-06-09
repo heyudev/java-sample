@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/07
  */
 public class MyCollection {
