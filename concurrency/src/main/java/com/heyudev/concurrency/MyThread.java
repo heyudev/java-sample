@@ -1,5 +1,9 @@
 package com.heyudev.concurrency;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -50,23 +54,35 @@ public class MyThread {
 //        }
 //        System.out.println("end");
 
-        Semaphore semaphore = new Semaphore(2);
-        System.out.println(semaphore.availablePermits());
-        semaphore.release();
-        System.out.println(semaphore.availablePermits());
-        try {
-            semaphore.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(semaphore.availablePermits());
-        try {
-            semaphore.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(semaphore.availablePermits());
 
+//        Semaphore semaphore = new Semaphore(2);
+//        System.out.println(semaphore.availablePermits());
+//        semaphore.release();
+//        System.out.println(semaphore.availablePermits());
+//        try {
+//            semaphore.acquire();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(semaphore.availablePermits());
+//        try {
+//            semaphore.acquire();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(semaphore.availablePermits());
+
+//        Thread2 t1 = new Thread2();
+//        t1.start();
+//        System.out.println("A");
+//        try {
+//            t1.wait();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("B");
+//        t1.notify();
+//        System.out.println("C");
     }
 
 
