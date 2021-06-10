@@ -50,12 +50,14 @@ public class CuratorWatch {
 
         try {
             watchNodeCache();
-            watch02();
-            watch03();
+            watchPathChildrenCache();
+            watchTreeCache();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        while (true) {
+        }
 
 //        if (client != null) {
 //            client.close();
@@ -69,6 +71,7 @@ public class CuratorWatch {
     •PathChildrenCache : 监控一个ZNode的子节点
     TreeCache : 可以监控整个树上的所有节点，类似于PathChildrenCache和NodeCache的组合
     * */
+
     /**
      * 演示 NodeCache：给指定一个节点注册监听器
      */
@@ -85,22 +88,19 @@ public class CuratorWatch {
             public void nodeChanged() throws Exception {
                 System.out.println("监听到了变化");
                 byte[] data = nodeCache.getCurrentData().getData();
-                System.out.println("w1---"+new String(data)+"---"+nodeCache.getCurrentData().getStat());
+                System.out.println("w1---" + new String(data) + "---" + nodeCache.getCurrentData().getStat());
             }
         });
         //3. 开启监听.如果设置为true，则开启监听是，加载缓冲数据
         nodeCache.start(true);
-        while (true) {
-
-        }
     }
 
     /**
      * 演示 PathChildrenCache：监听某个节点的所有子节点们
-     * 只是子节点,比如create /itheima1/create2/create44 bbb 可以监听
-     * create /itheima1/create2/create22/create333/create444 aaa 就不可以,因为是好几层子节点了
+     * 只是子节点,比如create /my/test2/p1 bbb 可以监听
+     * create /my/test2/p1/p2 aaa 就不可以,因为是好几层子节点了
      */
-    public static void watch02() throws Exception {
+    public static void watchPathChildrenCache() throws Exception {
         //1. 创建监听器
         PathChildrenCache cache = new PathChildrenCache(client, "/test2", true);
 
@@ -111,21 +111,17 @@ public class CuratorWatch {
                                    PathChildrenCacheEvent event) throws Exception {
                 System.out.println("监听到了变化");
                 byte[] data = event.getData().getData();
-                System.out.println("w2---"+new String(data)+"---"+event.getType()+"---"+event.getInitialData().size()+"---"+event.getData().getStat());
+                System.out.println("w2---" + new String(data) + "---" + event.getType() + "---" + "---" + event.getData().getStat());
             }
         });
         cache.start();
-        while (true) {
-
-        }
-
     }
 
     /**
      * 演示 TreeCache：监听某个节点自己和所有子节点们
      * 监控中可以看出,这个是整个树都会监控,包括所有子节点,不仅仅是下一层的,到叶子节点都监控
      */
-    public static void watch03() throws Exception {
+    public static void watchTreeCache() throws Exception {
         //创建坚监听节点
         TreeCache treeCache = new TreeCache(client, "/test3");
         //注册监听
@@ -136,12 +132,9 @@ public class CuratorWatch {
                 System.out.println("treeCache监控到了");
                 System.out.println(event);
                 System.out.println(new String(event.getData().getData()));
-                System.out.println("w3---"+new String(event.getData().getData())+"---"+event.getType()+"--"+event.getData().getStat());
+                System.out.println("w3---" + new String(event.getData().getData()) + "---" + event.getType() + "--" + event.getData().getStat());
             }
         });
         treeCache.start();
-        while (true) {
-
-        }
     }
 }
