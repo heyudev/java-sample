@@ -13,7 +13,7 @@ import java.util.concurrent.*;
  */
 public class HttpServer3 {
     private static final int QUEUE_MAX_SIZE = 100000;
-    private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("openapi-loghub-pool-%d").build();
+    private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("http-server-pool-%d").build();
     private static ExecutorService pool = new ThreadPoolExecutor(16, 16, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(QUEUE_MAX_SIZE), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) throws IOException {
