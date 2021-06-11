@@ -21,6 +21,7 @@
         <module>base</module>
         <module>spi</module>
         <module>zk-watcher</module>
+        <module>netty-server</module>
     </modules>
 
     <dependencyManagement>
