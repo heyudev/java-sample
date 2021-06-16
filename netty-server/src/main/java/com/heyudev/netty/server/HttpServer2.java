@@ -7,7 +7,7 @@ import java.net.Socket;
 /**
  * 多线程 消耗资源大
  * java.lang.OutOfMemoryError: unable to create new native thread
- * @author supeng
+ * @author heyudev
  * @date 2021/06/11
  */
 public class HttpServer2 {

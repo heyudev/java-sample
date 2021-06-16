@@ -7,7 +7,7 @@ import java.net.Socket;
 /**
  * 单线程
  * BIO 阻塞线程
- * @author supeng
+ * @author heyudev
  * @date 2021/06/11
  */
 public class HttpServer1 {
