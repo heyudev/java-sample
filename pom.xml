@@ -24,6 +24,9 @@
         <module>netty-server</module>
         <module>kafka</module>
         <module>jvm</module>
+        <module>dynamic-proxy</module>
+        <module>java-agent</module>
+        <module>unsafe</module>
     </modules>
 
     <dependencyManagement>

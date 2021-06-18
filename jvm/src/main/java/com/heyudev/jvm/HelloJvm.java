@@ -1,7 +1,7 @@
 package com.heyudev.jvm;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/18
  */
 public class HelloJvm {
