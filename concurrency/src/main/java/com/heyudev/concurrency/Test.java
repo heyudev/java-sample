@@ -1,6 +1,9 @@
 package com.heyudev.concurrency;
 
+import sun.misc.Unsafe;
+
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author heyudev
@@ -8,27 +11,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        new Thread(new Runnable() {
-            public void run() {
-                System.out.println("t1 start");
-                StaticWait staticWait = new StaticWait();
-                staticWait.say2(Thread.currentThread().getName());
-                staticWait.sayHello("t1");
-                System.out.println("t1 end");
-            }
-        }, "t1").start();
-
-        new Thread(new Runnable() {
-            public void run() {
-                System.out.println("t2 start");
-                StaticWait staticWait = new StaticWait();
-                staticWait.sayHello("t2");
-                StaticWait.say1("t2");
-                System.out.println("t2 end");
-            }
-        }, "t2").start();
-
+//        new Thread(new Runnable() {
+//            public void run() {
+//                System.out.println("t1 start");
+//                StaticWait staticWait = new StaticWait();
+//                staticWait.say2(Thread.currentThread().getName());
+//                staticWait.sayHello("t1");
+//                System.out.println("t1 end");
+//            }
+//        }, "t1").start();
 //
+//        new Thread(new Runnable() {
+//            public void run() {
+//                System.out.println("t2 start");
+//                StaticWait staticWait = new StaticWait();
+//                staticWait.sayHello("t2");
+//                StaticWait.say1("t2");
+//                System.out.println("t2 end");
+//            }
+//        }, "t2").start();
+
 //        new Thread(new Runnable() {
 //            public void run() {
 //                System.out.println("t3 start");

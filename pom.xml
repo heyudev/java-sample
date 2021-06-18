@@ -23,6 +23,7 @@
         <module>zk-watcher</module>
         <module>netty-server</module>
         <module>kafka</module>
+        <module>jvm</module>
     </modules>
 
     <dependencyManagement>
