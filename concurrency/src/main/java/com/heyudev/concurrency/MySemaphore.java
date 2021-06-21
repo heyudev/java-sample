@@ -10,35 +10,30 @@ import java.util.stream.IntStream;
  * @author supeng
  * @date 2021/06/21
  */
-public class MyCountDownLatch {
+public class MySemaphore {
     private static final ExecutorService pool = new ThreadPoolExecutor(100, 100, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadFactoryBuilder().build());
 
     public static void main(String[] args) {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        CountDownLatch countDownLatch = new CountDownLatch(10);
+        //信号量
+        Semaphore semaphore = new Semaphore(4);
 
         IntStream.range(0, 10).forEach(i -> {
             pool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("1--" + i);
                     try {
+                        semaphore.acquire();
+                        System.out.println("3--" + i + "---" + semaphore.availablePermits());
                         TimeUnit.SECONDS.sleep(1);
+                        semaphore.release();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    countDownLatch.countDown();
                 }
             });
         });
 
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("1----stop-----" + stopwatch.toString());
-        //多阶段栅栏
-
+        System.out.println("3----stop-----" + stopwatch.stop());
     }
 }
