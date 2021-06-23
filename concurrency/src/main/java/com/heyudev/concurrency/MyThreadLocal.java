@@ -45,6 +45,7 @@ public class MyThreadLocal {
         new Thread(() -> System.out.println(threadLocal.get() + "--3--" + inheritableThreadLocal.get())).start();
 
         //value 强引用
+        //value 可能被其他对象引用，如果设置为弱引用，gc会被回收，可能获取到null
         User user = new User("value");
         ThreadLocal<User> threadLocal1 = new ThreadLocal<>();
         threadLocal1.set(user);

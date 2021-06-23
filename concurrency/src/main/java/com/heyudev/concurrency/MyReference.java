@@ -54,7 +54,7 @@ public class MyReference {
         ReferenceQueue<User> queue = new ReferenceQueue<>();
         PhantomReference<User> phantomReference = new PhantomReference<>(new User(), queue);
 
-
+        System.out.println(phantomReference.get());
         System.in.read();
     }
 }
