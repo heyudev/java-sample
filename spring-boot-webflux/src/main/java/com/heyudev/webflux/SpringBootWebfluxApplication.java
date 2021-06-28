@@ -1,4 +1,4 @@
-package com.heyudev.springboot.webflux;
+package com.heyudev.webflux;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
