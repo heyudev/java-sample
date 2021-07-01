@@ -5,6 +5,11 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.*;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Stat;
+
+import java.util.ArrayList;
 
 /**
  * @program: curator-zk
@@ -49,6 +54,7 @@ public class CuratorWatch {
         client.start();
 
         try {
+            createNode();
             watchNodeCache();
             watchPathChildrenCache();
             watchTreeCache();
@@ -62,6 +68,30 @@ public class CuratorWatch {
 //        if (client != null) {
 //            client.close();
 //        }
+    }
+
+    private static void createNode() throws Exception {
+        String my = "/my";
+//        String n1 = client.create().forPath("/create");
+//        System.out.println("n1 = " + n1);
+        client.createContainers("/create");
+        String n2 = client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/create/seq");
+        String n3 = client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/create/seq");
+        String n4 = client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/create/seq");
+        System.out.println("n2 = " + n2);
+        System.out.println("n3 = " + n3);
+        System.out.println("n4 = " + n4);
+        String n5 = client.create().withMode(CreateMode.EPHEMERAL).forPath("/eph");
+        System.out.println("n5 = " + n5);
+        Stat stat = client.checkExists().forPath("/eph");
+        System.out.println("stat = " + stat);
+        client.delete().forPath("/eph");
+        Stat stat1 = client.checkExists().forPath("/eph");
+        System.out.println("stat1 = " + stat1);
+        if (stat == null) {
+            String n6 = client.create().withMode(CreateMode.EPHEMERAL).forPath("/eph"); //KeeperException$NodeExistsException
+            System.out.println("n6 = " + n6);
+        }
     }
 
     /*
