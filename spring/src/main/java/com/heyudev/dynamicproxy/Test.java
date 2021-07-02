@@ -1,4 +1,4 @@
-package com.heyudev.spring;
+package com.heyudev.dynamicproxy;
 
 /**
  * @author supeng
