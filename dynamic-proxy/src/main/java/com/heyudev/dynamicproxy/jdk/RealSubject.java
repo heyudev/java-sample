@@ -8,10 +8,10 @@ package com.heyudev.dynamicproxy.jdk;
  */
 public class RealSubject implements Subject {
     public void say() {
-        System.out.println("say hello");
+        System.out.println("jdk say");
     }
 
     public void run() {
-        System.out.println("i am running");
+        System.out.println("jdk running");
     }
 }
