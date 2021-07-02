@@ -3,7 +3,7 @@ package com.heyudev.dynamicproxy.cglib;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/07/02
  */
 public class Test {

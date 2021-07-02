@@ -3,7 +3,7 @@ package com.heyudev.dynamicproxy.cglib;
 /**
  * 不是接口
  *
- * @author supeng
+ * @author heyudev
  * @date 2021/07/02
  */
 public class Subject {

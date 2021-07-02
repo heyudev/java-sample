@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/07/02
  */
 public class DynamicProxy {

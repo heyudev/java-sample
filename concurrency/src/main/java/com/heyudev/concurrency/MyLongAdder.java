@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/21
  */
 public class MyLongAdder {

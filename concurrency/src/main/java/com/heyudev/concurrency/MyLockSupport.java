@@ -3,7 +3,7 @@ package com.heyudev.concurrency;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/21
  */
 public class MyLockSupport {

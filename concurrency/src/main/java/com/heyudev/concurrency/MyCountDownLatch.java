@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 import java.util.stream.IntStream;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/21
  */
 public class MyCountDownLatch {

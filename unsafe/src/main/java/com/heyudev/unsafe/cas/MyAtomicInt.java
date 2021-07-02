@@ -6,7 +6,7 @@ import sun.misc.Unsafe;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/18
  */
 public class MyAtomicInt {

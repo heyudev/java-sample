@@ -1,7 +1,7 @@
 package com.heyudev.base;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/23
  */
 public class BitOperation {

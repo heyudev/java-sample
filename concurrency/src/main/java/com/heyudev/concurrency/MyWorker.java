@@ -1,7 +1,7 @@
 package com.heyudev.concurrency;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/21
  */
 public class MyWorker {

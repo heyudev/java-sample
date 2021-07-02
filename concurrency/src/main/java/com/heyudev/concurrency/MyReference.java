@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author supeng
+ * @author heyudev
  * @date 2021/06/21
  */
 public class MyReference {
