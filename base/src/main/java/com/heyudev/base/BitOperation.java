@@ -20,8 +20,10 @@ public class BitOperation {
         System.out.println(i1 | i2);
         System.out.println(~i1);
         System.out.println(i1 ^ i2);
+        System.out.println("----");
         for (int i=0;i<10;i++) {
             System.out.println(i ^ 0);
+            System.out.println(i ^ 1);
         }
     }
 }
