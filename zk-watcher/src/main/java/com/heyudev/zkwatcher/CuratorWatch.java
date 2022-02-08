@@ -12,11 +12,8 @@ import org.apache.zookeeper.data.Stat;
 import java.util.ArrayList;
 
 /**
- * @program: curator-zk
- * @description:
- * @author: zhanghz001
- * @create: 2021-02-07 16:46
- **/
+ *
+ */
 public class CuratorWatch {
 
     private static CuratorFramework client = null;
