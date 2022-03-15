@@ -1,6 +1,5 @@
 package com.heyudev.concurrency;
 
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -17,8 +16,8 @@ public class AQS {
 
         } catch (Exception e) {
 
+        }finally {
+            lock.unlock();
         }
-        Semaphore semaphore = new Semaphore(1);
-
     }
 }

@@ -23,6 +23,7 @@ public class MySemaphore {
                 @Override
                 public void run() {
                     try {
+                        TimeUnit.SECONDS.sleep(1);
                         semaphore.acquire();
                         System.out.println("3--" + i + "---" + semaphore.availablePermits());
                         TimeUnit.SECONDS.sleep(1);
