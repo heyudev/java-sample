@@ -1,0 +1,12 @@
+spring:
+  redis:
+    hostName: r-bp1ps6my7lzg8rdhwx682.redis.rds.aliyuncs.com
+    port: 6379
+    password: Wqsd@2019
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
