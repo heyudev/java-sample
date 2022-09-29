@@ -247,4 +247,42 @@ public final class DateUtil {
     public static Duration betweenTimes(String dayStart, String dayEnd) {
         return Duration.between(parseToLocalDateTime(dayStart), parseToLocalDateTime(dayEnd));
     }
+
+
+    public static void main(String[] args) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
+        int dayOfWeek = localDateTime.getDayOfWeek().getValue();
+        System.out.println(dayOfWeek);
+        System.out.println("-----");
+        LocalDateTime localDateTime1 = localDateTime.plusDays(-4);
+        LocalDateTime localDateTime2 = localDateTime.plusDays(-3);
+        System.out.println(localDateTime1);
+        System.out.println(localDateTime2);
+
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println(date);
+        System.out.println("-----");
+
+
+        LocalDateTime mondayLocalDateTime1 = localDateTime2.plusDays(-7).withHour(0).withMinute(0).withSecond(0);
+        Date monday1 = Date.from(mondayLocalDateTime1.atZone(ZoneId.systemDefault()).toInstant());
+        LocalDateTime sundayLocalDateTime1 = localDateTime1.withHour(23).withMinute(59).withSecond(59);
+        Date sunday1 = Date.from(sundayLocalDateTime1.atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println(monday1);
+        System.out.println(sunday1);
+
+        System.out.println("-----");
+        LocalDateTime mondayLocalDateTime = localDateTime.plusDays(1-dayOfWeek).withHour(0).withMinute(0).withSecond(0);
+        Date monday = Date.from(mondayLocalDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        LocalDateTime sundayLocalDateTime = localDateTime.plusDays(7-dayOfWeek).withHour(23).withMinute(59).withSecond(59);
+        Date sunday = Date.from(sundayLocalDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        System.out.println(monday);
+        System.out.println(sunday);
+
+
+
+
+    }
 }
