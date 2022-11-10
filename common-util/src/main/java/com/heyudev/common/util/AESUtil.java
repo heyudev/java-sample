@@ -14,7 +14,7 @@ public class AESUtil {
     /**
      * 16位Key
      */
-    private static final String KEY = "taskmistresses";
+    private static final String KEY = "taskmistresses12";
     /**
      * 加解密算法/工作模式/填充方式
      */

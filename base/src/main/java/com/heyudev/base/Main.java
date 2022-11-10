@@ -7,6 +7,9 @@ import com.heyudev.common.http.HttpClientUtil;
 import com.heyudev.common.http.HttpPoolClient;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 
 /**
@@ -99,11 +102,66 @@ public class Main {
 //        System.out.println(list);
 
 
-        String sid = "weixin_openid_o0w175WAYG51kqbpMZJNvx3EfQRw-e3d4-1654497038582";
+//        String sid = "weixin_openid_o0w175WAYG51kqbpMZJNvx3EfQRw-e3d4-1654497038582";
+//
+//        String mid = sid.substring(0, sid.length()-19);
+//        System.out.println(mid);
 
-        String mid = sid.substring(0, sid.length()-19);
-        System.out.println(mid);
 
+//        final String donateRateFormat = "1000票约占捐献总额的%s";
+//        System.out.println(String.format(donateRateFormat, 1)+"%");
+//
+//
+//        LocalDateTime localDateTime = LocalDateTime.now().plusDays(-7);
+//        int dayOfWeek = localDateTime.getDayOfWeek().getValue();
+//        LocalDateTime lastMondayLocalDateTime = localDateTime.plusDays(-7 - (1 - dayOfWeek));
+//
+//        System.out.println(lastMondayLocalDateTime);
+//
+//        LocalDateTime lastSundayLocalDateTime = localDateTime.plusDays(7 - dayOfWeek);
+//
+//        System.out.println(lastSundayLocalDateTime);
+
+//        Integer sumPoint = 298818;
+//        Double rate = 0.0;
+//        if (Objects.nonNull(sumPoint)) {
+//            System.out.println("1 = "+ sumPoint);
+//            if (sumPoint < 1000) {
+//                rate = 100.0;
+//                System.out.println("11 = "+ rate);
+//            } else {
+//                rate = 1000.0 / sumPoint * 100;
+//                System.out.println("111 = "+ rate);
+//            }
+//        }
+//        BigDecimal rateBig = new BigDecimal(rate);
+//        Double ratePrecent = rateBig.setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue();
+//        if (Objects.nonNull(ratePrecent) && ratePrecent > 0.1) {
+//            System.out.println("1111 = "+ ratePrecent);
+//            System.out.println("11111 = "+ ratePrecent.toString());
+//        } else {
+//            System.out.println("111111 = "+ 0.1);
+//        }
+
+//        LocalDateTime localDateTime = LocalDateTime.now();
+//        System.out.println(LocalDateTime.of(localDateTime.toLocalDate(), LocalDateTime.MIN.toLocalTime()));
+//        System.out.println(LocalDateTime.of(localDateTime.toLocalDate(), LocalDateTime.MAX.toLocalTime()));
+//        System.out.println(LocalDateTime.of(localDateTime.toLocalDate(), LocalDateTime.MIN.toLocalTime()).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+//        System.out.println(LocalDateTime.of(localDateTime.toLocalDate(), LocalDateTime.MAX.toLocalTime()).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
+//        Integer type=2;
+//        int type2 =2;
+//
+//        System.out.println(type);
+//        System.out.println(type2);
+//        System.out.println((byte)type2);
+
+        String s = "123,125,21,";
+        String[] ss = s.split(",");
+
+        System.out.println(ss.length);
+        System.out.println(ss[ss.length-1]);
+        System.out.println(ss[ss.length]);
     }
 
     public static List<Long> filter(List<Long> list){
