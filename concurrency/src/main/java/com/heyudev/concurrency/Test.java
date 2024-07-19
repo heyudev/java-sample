@@ -1,9 +1,9 @@
 package com.heyudev.concurrency;
 
-import sun.misc.Unsafe;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * @author heyudev
@@ -62,5 +62,42 @@ public class Test {
 //                System.out.println("t5 end");
 //            }
 //        }, "t5").start();
+
+
+//        List<String> list = new ArrayList<>();
+//        for (int i=0;i<1000;i++) {
+//            list.add(i+"_");
+//        }
+//
+//        List<String> list1 = new ArrayList<>();
+//        for (int i=0;i<1000;i++) {
+//            list1.add(i+"_");
+//        }
+//
+//        System.out.println("start");
+//
+//        list.parallelStream().filter(x->{
+//            try {
+//                TimeUnit.MILLISECONDS.sleep(100);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            return true;
+//        }).collect(Collectors.toSet());
+//
+//        System.out.println("running");
+//
+//        list1.parallelStream().filter(x->{
+//            try {
+//                TimeUnit.MILLISECONDS.sleep(100);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            return true;
+//        }).collect(Collectors.toSet());
+//
+//        System.out.println("end");
+
+
     }
 }

@@ -1,3 +1,5 @@
+
+
 spring:
   redis:
     hostName: r-bp1ps6my7lzg8rdhwx682.redis.rds.aliyuncs.com
@@ -10,3 +12,5 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
+  application:
+    name: redis
