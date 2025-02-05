@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author heyudev
  */
 public abstract class Counter {
-//    private final AtomicInteger counter = new AtomicInteger(0);
     private final Map<String, AtomicInteger> counters = new ConcurrentHashMap<>();
 
     // 可配置阈值
@@ -73,6 +72,15 @@ public abstract class Counter {
         int current = counter.get();
         if (current > 0 && counter.compareAndSet(current, 0)) {
             deal(key, current);
+        }
+    }
+
+    private void flush() {
+        if (counters.isEmpty()) {
+            return;
+        }
+        for (Map.Entry<String, AtomicInteger> entry : counters.entrySet()) {
+            flush(entry.getKey());
         }
     }
 
