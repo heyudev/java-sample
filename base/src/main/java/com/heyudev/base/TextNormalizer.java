@@ -1,7 +1,6 @@
-package com.tzld.manager.util;
+package com.heyudev.base;
 
 import java.text.Normalizer;
-import java.util.regex.Pattern;
 
 public class TextNormalizer {
 

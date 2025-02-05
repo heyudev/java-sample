@@ -1,70 +1,164 @@
 package com.heyudev.base;
 
-import java.util.Random;
+import org.apache.commons.math3.distribution.BetaDistribution;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class ThompsonSampling {
-    private static final Random random = new Random();
-
-    // 假设每个选项的收益服从Beta分布
-    private static class BetaDistribution {
-        private double alpha;
-        private double beta;
-
-        public BetaDistribution(double alpha, double beta) {
-            this.alpha = alpha;
-            this.beta = beta;
+    public static ContentDTO choose(List<ContentDTO> contentDTOS) {
+        if (Objects.isNull(contentDTOS) || contentDTOS.isEmpty()) {
+            return null;
         }
-
-        // 从Beta分布中抽取样本
-        public double sample() {
-            double u = Math.random();
-            double v = Math.random();
-            double sample = Math.pow(1 - u, beta - 1) * Math.pow(u, alpha - 1) /
-                    (1 - Math.pow(1 - u, alpha + beta));
-            return sample;
+        double max = 0;
+        ContentDTO result = null;
+        for (ContentDTO contentDTO : contentDTOS) {
+            if (Objects.isNull(contentDTO) || Objects.isNull(contentDTO.getReturnNum())
+                    || Objects.isNull(contentDTO.getViewNum())) {
+                continue;
+            }
+            double alpha = contentDTO.getReturnNum() + 1;
+            double beta = contentDTO.getViewNum() + 1;
+            double probability = betaSampler(alpha, beta);
+            System.out.println("videoId = " + contentDTO.getVideoId() + ",id = " + contentDTO.getId() + ",alpha = " + alpha + ",beat = " + beta + ",probability = " + probability);
+            if (probability > max) {
+                result = contentDTO;
+                max = probability;
+            }
         }
+        return result;
+    }
+
+    public static double betaSampler(double alpha, double beta) {
+        BetaDistribution betaSample = new BetaDistribution(alpha, beta);
+        return betaSample.sample();
     }
 
     public static void main(String[] args) {
-        int numOptions = 5; // 假设有5个选项
-        BetaDistribution[] distributions = new BetaDistribution[numOptions];
-        for (int i = 0; i < numOptions; i++) {
-            // 初始alpha和beta值，这里使用1.0，表示无偏的先验
-            distributions[i] = new BetaDistribution(1.0, 1.0);
+        List<ContentDTO> list = new ArrayList<>();
+        ContentDTO contentDTO1 = new ContentDTO(0L,1L,"",1,1L,2L);
+        ContentDTO contentDTO2 = new ContentDTO(1L,1L,"",1,1L,2L);
+        ContentDTO contentDTO3 = new ContentDTO(2L,1L,"",1,1L,2L);
+        ContentDTO contentDTO4 = new ContentDTO(3L,1L,"",1,1L,2L);
+        list.add(contentDTO1);
+        list.add(contentDTO2);
+        list.add(contentDTO3);
+        list.add(contentDTO4);
+        for (int i = 0; i < 100; i++) {
+            ContentDTO contentDTO = choose(list);
+            System.out.println(i+"---"+"videoId = " + contentDTO.getVideoId() + ",id = " + contentDTO.getId() + ",viewNum = " + contentDTO.getViewNum() + ",returnNum = " + contentDTO.getReturnNum() + ",probability = " + contentDTO.getProbability());
         }
+    }
+}
 
-        int[] counts = new int[numOptions]; // 记录每个选项被选择的次数
-        int[] rewards = new int[numOptions]; // 记录每个选项的总收益
+class ContentDTO {
+    public ContentDTO(Long id, Long videoId, String content, Integer type, Long viewNum, Long returnNum) {
+        this.id = id;
+        this.videoId = videoId;
+        this.content = content;
+        this.type = type;
+        this.viewNum = viewNum;
+        this.returnNum = returnNum;
+    }
 
-        int totalRounds = 1000; // 进行1000轮选择
-        for (int round = 0; round < totalRounds; round++) {
-            int bestIndex = 0;
-            double bestSample = 0.0;
+    /**
+     * ID
+     * 标题ID or 封面ID
+     */
+    private Long id;
+    /**
+     * 视频ID
+     */
+    private Long videoId;
+    /**
+     * 标题 or 封面
+     */
+    private String content;
+    /**
+     * 类型
+     */
+    private Integer type;
+    /**
+     * 曝光数
+     */
+    private Long viewNum;
+    /**
+     * 回流数
+     */
+    private Long returnNum;
+    /**
+     * 概率
+     * Thompson
+     */
+    private Double probability;
 
-            // 选择具有最高样本值的选项
-            for (int i = 0; i < numOptions; i++) {
-                double sample = distributions[i].sample();
-                if (i == 0 || sample > bestSample) {
-                    bestSample = sample;
-                    bestIndex = i;
-                }
-            }
+    public Long getId() {
+        return id;
+    }
 
-            // 假设每次选择后获得1的收益，实际应用中可以根据情况修改
-            int reward = 1;
-            counts[bestIndex]++;
-            rewards[bestIndex] += reward;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-            // 更新Beta分布的参数
-            distributions[bestIndex] = new BetaDistribution(
-                    distributions[bestIndex].alpha + reward,
-                    distributions[bestIndex].beta + (1 - reward)
-            );
-        }
+    public Long getVideoId() {
+        return videoId;
+    }
 
-        // 输出每个选项的被选择次数和总收益
-        for (int i = 0; i < numOptions; i++) {
-            System.out.println("Option " + i + " was chosen " + counts[i] + " times and earned " + rewards[i] + " rewards.");
-        }
+    public void setVideoId(Long videoId) {
+        this.videoId = videoId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Long getViewNum() {
+        return viewNum;
+    }
+
+    public void setViewNum(Long viewNum) {
+        this.viewNum = viewNum;
+    }
+
+    public Long getReturnNum() {
+        return returnNum;
+    }
+
+    public void setReturnNum(Long returnNum) {
+        this.returnNum = returnNum;
+    }
+
+    public Double getProbability() {
+        return probability;
+    }
+
+    public void setProbability(Double probability) {
+        this.probability = probability;
+    }
+
+    @Override
+    public String toString() {
+        return "ContentDTO{" +
+                "id=" + id +
+                ", videoId=" + videoId +
+                ", content='" + content + '\'' +
+                ", type=" + type +
+                ", viewNum=" + viewNum +
+                ", returnNum=" + returnNum +
+                ", probability=" + probability +
+                '}';
     }
 }
