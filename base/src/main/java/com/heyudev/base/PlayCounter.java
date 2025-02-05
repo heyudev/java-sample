@@ -12,7 +12,7 @@ public class PlayCounter extends Counter{
     }
 
     @Override
-    protected void deal(int count) {
+    protected void deal(String key, int count) {
 
     }
 }

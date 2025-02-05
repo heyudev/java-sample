@@ -2,6 +2,7 @@ package com.heyudev.common.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
@@ -53,21 +54,16 @@ public class AESUtil {
         return aesDecryptByBytes(base64Decode(encryptStr), decryptKey);
     }
 
+    public static String generateKey() throws Exception {
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        keyGenerator.init(128);
+        SecretKey secretKey = keyGenerator.generateKey();
+        return base64Encode(secretKey.getEncoded());
+    }
+
     /**
      * 测试 *
      */
     public static void main(String[] args) throws Exception {
-//        edb005f7a3ef440492f546c88590b99e
-        String content = "asdasdasd";
-        System.out.println("加密前：" + content);
-        System.out.println("加密密钥和解密密钥：" + KEY);
-        long start = System.currentTimeMillis();
-        String encrypt = aesEncrypt(content, KEY);
-        System.out.println("aesEncrypt time = " + (System.currentTimeMillis() - start));
-        System.out.println(encrypt.length() + ":加密后：" + encrypt);
-        long start1 = System.currentTimeMillis();
-        String decrypt = aesDecrypt(encrypt, KEY);
-        System.out.println("aesDecrypt time = " + (System.currentTimeMillis() - start1));
-        System.out.println("解密后：" + decrypt);
     }
 }

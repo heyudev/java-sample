@@ -1,5 +1,7 @@
 package com.heyudev.base;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -9,7 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author heyudev
  */
 public abstract class Counter {
-    private final AtomicInteger counter = new AtomicInteger(0);
+//    private final AtomicInteger counter = new AtomicInteger(0);
+    private final Map<String, AtomicInteger> counters = new ConcurrentHashMap<>();
+
     // 可配置阈值
     private final int threshold;
     private final ScheduledExecutorService scheduler;
@@ -25,14 +29,20 @@ public abstract class Counter {
         this.scheduler.scheduleAtFixedRate(this::flush, interval, interval, unit);
     }
 
-    public void increment() {
+    public void increment(String key) {
+        AtomicInteger counter = counters.computeIfAbsent(key, k -> new AtomicInteger(0));
         int current = counter.incrementAndGet();
         if (current >= threshold) {
-            resetAndDeal();
+            resetAndDeal(key);
         }
     }
 
-    private void resetAndDeal() {
+    private void resetAndDeal(String key) {
+        AtomicInteger counter = counters.get(key);
+        if (counter == null) {
+            return;
+        }
+
         int current;
         do {
             current = counter.get();
@@ -42,7 +52,7 @@ public abstract class Counter {
             }
         } while (!counter.compareAndSet(current, current - threshold));
         // 处理阈值数量的数据
-        deal(threshold);
+        deal(key, threshold);
     }
 
     /**
@@ -50,15 +60,19 @@ public abstract class Counter {
      *
      * @param count 数量
      */
-    protected abstract void deal(int count);
+    protected abstract void deal(String key, int count);
 
     /**
      * 定时上报剩余数据
      */
-    public void flush() {
+    public void flush(String key) {
+        AtomicInteger counter = counters.get(key);
+        if (counter == null) {
+            return;
+        }
         int current = counter.get();
         if (current > 0 && counter.compareAndSet(current, 0)) {
-            deal(current);
+            deal(key, current);
         }
     }
 
